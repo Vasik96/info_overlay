@@ -3,7 +3,7 @@ requirements:
   - wayland
   - any WM/DE that supports layer-shell (definitely not GNOME lol)
   - qdbus installed as a package (for shortcuts)
-      - ```sudo dnf install qdbus```
+      - install: sudo dnf install qdbus
   - setting shortcut in plasma settings
       - command: qdbus org.info_overlay.Overlay /Overlay org.info_overlay.Overlay.Toggle
   
