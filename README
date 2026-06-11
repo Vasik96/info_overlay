@@ -2,10 +2,10 @@ KDE Plasma overlay
 requirements:
   - wayland
   - any WM/DE that supports layer-shell (definitely not GNOME lol)
-  - idk
-  - any idea of what to put here?
-  - more stuff so it looks better XD
-  
+  - qdbus installed as a package (for shortcuts)
+      - ```sudo dnf install qdbus```
+  - setting shortcut in plasma settings
+      - command: qdbus org.info_overlay.Overlay /Overlay org.info_overlay.Overlay.Toggle
   
 
 
