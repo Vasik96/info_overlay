@@ -1,4 +1,4 @@
- 	# H1 KDE Plasma overlay
+KDE Plasma overlay
 requirements:
   - wayland
   - any WM/DE that supports layer-shell (definitely not GNOME lol)
