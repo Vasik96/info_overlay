@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/vasik96/projects/info_overlay/build/cmake_install.cmake",
+		"/home/vasik96/projects/info_overlay/build/src/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

@@ -1,0 +1,16 @@
+--bare
+-I
+/home/vasik96/projects/info_overlay/build/src
+-I
+/home/vasik96/projects/info_overlay/build/src/info_overlay
+-I
+/home/vasik96/projects/info_overlay/build/src
+-I
+/usr/lib64/qt6/qml
+--resource
+/home/vasik96/projects/info_overlay/build/src/.qt/rcc/qmake_info_overlay.qrc
+--resource
+/home/vasik96/projects/info_overlay/build/src/.qt/rcc/info_overlay_bin_raw_qml_0.qrc
+/home/vasik96/projects/info_overlay/src/qml/Main.qml
+--json
+/home/vasik96/projects/info_overlay/build/info_overlay_bin_qmllint.json

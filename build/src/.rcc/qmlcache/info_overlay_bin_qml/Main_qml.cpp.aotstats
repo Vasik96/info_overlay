@@ -1,0 +1,159 @@
+{
+    "formatRevision": 1,
+    "modules": [
+        {
+            "moduleFiles": [
+                {
+                    "entries": [
+                        {
+                            "codegenResult": 0,
+                            "column": 20,
+                            "durationMicroseconds": 0,
+                            "functionName": "sequences",
+                            "line": 16,
+                            "message": ""
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 22,
+                            "durationMicroseconds": 0,
+                            "functionName": "onActivated",
+                            "line": 17,
+                            "message": "Cannot retrieve a non-object type by ID: findInput"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 16,
+                            "durationMicroseconds": 0,
+                            "functionName": "color",
+                            "line": 40,
+                            "message": "Cannot generate efficient code for internal conversion with incompatible or ambiguous types: call to method rgba, returning QVariant -> QColor stored as QVariant"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 12,
+                            "durationMicroseconds": 0,
+                            "functionName": "x",
+                            "line": 44,
+                            "message": "Cannot retrieve a non-object type by ID: window"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 23,
+                            "durationMicroseconds": 0,
+                            "functionName": "color",
+                            "line": 41,
+                            "message": "Cannot generate efficient code for internal conversion with incompatible or ambiguous types: call to method rgba, returning QVariant -> QColor stored as QVariant"
+                        },
+                        {
+                            "codegenResult": 0,
+                            "column": 31,
+                            "durationMicroseconds": 0,
+                            "functionName": "centerIn",
+                            "line": 48,
+                            "message": ""
+                        },
+                        {
+                            "codegenResult": 0,
+                            "column": 43,
+                            "durationMicroseconds": 0,
+                            "functionName": "horizontalCenter",
+                            "line": 56,
+                            "message": ""
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 36,
+                            "durationMicroseconds": 0,
+                            "functionName": "onTextChanged",
+                            "line": 70,
+                            "message": "Could not find signal \"textChanged\"."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 37,
+                            "durationMicroseconds": 0,
+                            "functionName": "onPressed",
+                            "line": 79,
+                            "message": "Cannot access value for name event"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 32,
+                            "durationMicroseconds": 0,
+                            "functionName": "onClicked",
+                            "line": 95,
+                            "message": "Could not find signal \"clicked\"."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 27,
+                            "durationMicroseconds": 0,
+                            "functionName": "text",
+                            "line": 112,
+                            "message": "Could not find property \"text\"."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 33,
+                            "durationMicroseconds": 0,
+                            "functionName": "onAccepted",
+                            "line": 115,
+                            "message": "Could not find signal \"accepted\"."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 32,
+                            "durationMicroseconds": 0,
+                            "functionName": "onClicked",
+                            "line": 128,
+                            "message": "Could not find signal \"clicked\"."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 31,
+                            "durationMicroseconds": 0,
+                            "functionName": "onUrlChanged",
+                            "line": 145,
+                            "message": "Cannot retrieve a non-object type by ID: urlInput"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 32,
+                            "durationMicroseconds": 0,
+                            "functionName": "onPressed",
+                            "line": 152,
+                            "message": "Cannot access value for name mouse"
+                        },
+                        {
+                            "codegenResult": 0,
+                            "column": 35,
+                            "durationMicroseconds": 0,
+                            "functionName": "fill",
+                            "line": 151,
+                            "message": ""
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 28,
+                            "durationMicroseconds": 0,
+                            "functionName": "onClicked",
+                            "line": 164,
+                            "message": "Could not find signal \"clicked\"."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 43,
+                            "durationMicroseconds": 0,
+                            "functionName": "horizontalCenter",
+                            "line": 163,
+                            "message": "Could not find property \"horizontalCenter\"."
+                        }
+                    ],
+                    "filePath": "/home/vasik96/projects/info_overlay/src/qml/Main.qml"
+                }
+            ],
+            "moduleId": "info_overlay(info_overlay_bin)"
+        }
+    ]
+}

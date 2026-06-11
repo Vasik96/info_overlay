@@ -1,0 +1,5 @@
+--resource
+/home/vasik96/projects/info_overlay/build/src/.qt/rcc/qmake_info_overlay.qrc
+--resource
+/home/vasik96/projects/info_overlay/build/src/.qt/rcc/info_overlay_bin_raw_qml_0.qrc
+/info_overlay/qml/Main.qml

@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/">
+    <file alias="/info_overlay">/home/vasik96/projects/info_overlay/build/src/info_overlay</file>
+
+  </qresource>
+</RCC>

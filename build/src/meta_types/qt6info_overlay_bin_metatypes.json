@@ -1,0 +1,49 @@
+[
+    {
+        "classes": [
+            {
+                "classInfos": [
+                    {
+                        "name": "D-Bus Interface",
+                        "value": "org.info_overlay.Overlay"
+                    }
+                ],
+                "className": "OverlayAdaptor",
+                "lineNumber": 7,
+                "object": true,
+                "qualifiedClassName": "OverlayAdaptor",
+                "slots": [
+                    {
+                        "access": "public",
+                        "index": 0,
+                        "lineNumber": 17,
+                        "name": "Toggle",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 1,
+                        "lineNumber": 26,
+                        "name": "Show",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 2,
+                        "lineNumber": 34,
+                        "name": "Hide",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QDBusAbstractAdaptor"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "OverlayAdaptor.h",
+        "outputRevision": 69
+    }
+]

@@ -1,0 +1,14 @@
+-rootPath
+/home/vasik96/projects/info_overlay/src
+-cmake-output
+-output-file
+/home/vasik96/projects/info_overlay/build/src/.qt/qml_imports/info_overlay_bin_conf.cmake
+-importPath
+/home/vasik96/projects/info_overlay/build/src
+-importPath
+/home/vasik96/projects/info_overlay/build/src/info_overlay
+-importPath
+/usr/lib64/qt6/qml
+-qrcFiles
+/home/vasik96/projects/info_overlay/build/src/.qt/rcc/qmake_info_overlay.qrc
+/home/vasik96/projects/info_overlay/build/src/.qt/rcc/info_overlay_bin_raw_qml_0.qrc

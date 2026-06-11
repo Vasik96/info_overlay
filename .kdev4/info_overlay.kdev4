@@ -1,0 +1,41 @@
+[Buildset]
+BuildItems=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x01\x00\x00\x00\x18\x00i\x00n\x00f\x00o\x00_\x00o\x00v\x00e\x00r\x00l\x00a\x00y)
+
+[CMake]
+Build Directory Count=1
+Current Build Directory Index-Host System=0
+
+[CMake][CMake Build Directory 0]
+Build Directory Path=/home/vasik96/projects/info_overlay/build
+Build Type=Debug
+CMake Binary=/usr/bin/cmake
+CMake Executable=/usr/bin/cmake
+Environment Profile=
+Extra Arguments=
+Install Directory=/usr/local
+Runtime=Host System
+
+[Launch]
+Launch Configurations=Launch Configuration 0
+
+[Launch][Launch Configuration 0]
+Configured Launch Modes=execute
+Configured Launchers=nativeAppLauncher
+Name=info_overlay
+Type=Native Application
+
+[Launch][Launch Configuration 0][Data]
+Arguments=
+Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x03\x00\x00\x00\x18\x00i\x00n\x00f\x00o\x00_\x00o\x00v\x00e\x00r\x00l\x00a\x00y\x00\x00\x00\x06\x00s\x00r\x00c\x00\x00\x00\x18\x00i\x00n\x00f\x00o\x00_\x00o\x00v\x00e\x00r\x00l\x00a\x00y)
+Dependency Action=Build
+EnvironmentGroup=
+Executable=file:///home/vasik96/projects/info_overlay/build/src/info_overlay_bin
+External Terminal=konsole --hold -e
+Kill Before Executing Again=4194304
+Project Target=
+Use External Terminal=false
+Working Directory=
+isExecutable=true
+
+[Project]
+VersionControlSupport=

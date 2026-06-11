@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/info_overlay/">
+    <file alias="qml/Main.qml">/home/vasik96/projects/info_overlay/src/qml/Main.qml</file>
+  </qresource>
+</RCC>
+

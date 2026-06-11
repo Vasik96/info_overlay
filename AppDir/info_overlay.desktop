@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Info Overlay
+Exec=info_overlay_bin
+Icon=icon
+Type=Application
+Categories=Utility;
