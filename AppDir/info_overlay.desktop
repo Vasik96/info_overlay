@@ -3,4 +3,5 @@ Name=Info Overlay
 Exec=info_overlay_bin
 Icon=icon
 Type=Application
+StartupWMClass=info_overlay
 Categories=Utility;

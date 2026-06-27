@@ -1,0 +1,79 @@
+{
+    "classes": [
+        {
+            "className": "PortalShortcuts",
+            "lineNumber": 55,
+            "object": true,
+            "qualifiedClassName": "PortalShortcuts",
+            "slots": [
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "responseCode",
+                            "type": "uint"
+                        },
+                        {
+                            "name": "results",
+                            "type": "QVariantMap"
+                        }
+                    ],
+                    "index": 0,
+                    "lineNumber": 62,
+                    "name": "handleSessionCreatedResponse",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "responseCode",
+                            "type": "uint"
+                        },
+                        {
+                            "name": "results",
+                            "type": "QVariantMap"
+                        }
+                    ],
+                    "index": 1,
+                    "lineNumber": 63,
+                    "name": "handleBindShortcutsResponse",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "targetSession",
+                            "type": "QDBusObjectPath"
+                        },
+                        {
+                            "name": "shortcutId",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "timestamp",
+                            "type": "qulonglong"
+                        },
+                        {
+                            "name": "options",
+                            "type": "QVariantMap"
+                        }
+                    ],
+                    "index": 2,
+                    "lineNumber": 64,
+                    "name": "handleActivated",
+                    "returnType": "void"
+                }
+            ],
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "PortalShortcuts.h",
+    "outputRevision": 69
+}

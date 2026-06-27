@@ -1,4 +1,4 @@
-# Install script for directory: /home/vasik96/projects/info_overlay/src
+# Install script for directory: /home/vasik96/projects/info_overlay
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -49,7 +49,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/info_overlay_bin"
          RPATH "\$ORIGIN:\$ORIGIN/../lib64")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/vasik96/projects/info_overlay/build/src/info_overlay_bin")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/vasik96/projects/info_overlay/build/info_overlay_bin")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/info_overlay_bin" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/info_overlay_bin")
     file(RPATH_CHANGE
@@ -63,12 +63,28 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  include("/home/vasik96/projects/info_overlay/build/src/CMakeFiles/info_overlay_bin.dir/install-cxx-module-bmi-Debug.cmake" OPTIONAL)
+  include("/home/vasik96/projects/info_overlay/build/CMakeFiles/info_overlay_bin.dir/install-cxx-module-bmi-Debug.cmake" OPTIONAL)
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/home/vasik96/projects/info_overlay/build/src/install_local_manifest.txt"
+  file(WRITE "/home/vasik96/projects/info_overlay/build/install_local_manifest.txt"
+     "${CMAKE_INSTALL_MANIFEST_CONTENT}")
+endif()
+if(CMAKE_INSTALL_COMPONENT)
+  if(CMAKE_INSTALL_COMPONENT MATCHES "^[a-zA-Z0-9_.+-]+$")
+    set(CMAKE_INSTALL_MANIFEST "install_manifest_${CMAKE_INSTALL_COMPONENT}.txt")
+  else()
+    string(MD5 CMAKE_INST_COMP_HASH "${CMAKE_INSTALL_COMPONENT}")
+    set(CMAKE_INSTALL_MANIFEST "install_manifest_${CMAKE_INST_COMP_HASH}.txt")
+    unset(CMAKE_INST_COMP_HASH)
+  endif()
+else()
+  set(CMAKE_INSTALL_MANIFEST "install_manifest.txt")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  file(WRITE "/home/vasik96/projects/info_overlay/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

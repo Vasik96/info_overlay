@@ -63,7 +63,6 @@ set(__qt_deploy_support_files
     "/home/vasik96/projects/info_overlay/build/.qt/QtDeployTargets.cmake"
     "/usr/lib64/cmake/Qt6Core/Qt6CoreDeploySupport.cmake"
     "/usr/lib64/cmake/Qt6Qml/Qt6QmlDeploySupport.cmake"
-    "/usr/lib64/cmake/Qt6WebEngineCore/Qt6WebEngineCoreDeploySupport.cmake"
 )
 foreach(__qt_deploy_support_file IN LISTS __qt_deploy_support_files)
     include("${__qt_deploy_support_file}")

@@ -1,0 +1,18 @@
+{
+    "classes": [
+        {
+            "className": "OverlayMaskHandler",
+            "lineNumber": 5,
+            "object": true,
+            "qualifiedClassName": "OverlayMaskHandler",
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "OverlayMaskHandler.h",
+    "outputRevision": 69
+}

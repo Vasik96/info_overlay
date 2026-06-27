@@ -1,6 +1,10 @@
 #!/bin/sh
-# Get the directory where THIS script is located
 APPDIR="$(dirname "$(readlink -f "$0")")"
 
-# Execute the binary using the absolute path derived from the AppDir location
-exec "$APPDIR/usr/bin/info_overlay_bin"
+export LD_LIBRARY_PATH="$APPDIR/usr/lib:$LD_LIBRARY_PATH"
+export XDG_DATA_DIRS="$APPDIR/usr/share:$XDG_DATA_DIRS"
+
+# This line helps Wayland treat this as an interactive app launch
+export QT_WAYLAND_SHELL_INTEGRATION=xdg-shell
+
+exec "$APPDIR/usr/bin/info_overlay_bin" "$@"

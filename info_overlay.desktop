@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Info Overlay
+Exec=/home/vasik96/projects/info_overlay/Info_Overlay-x86_64.AppImage
+Icon=utilities-system-monitor
+Categories=Utility;
+NoDisplay=true
+StartupNotify=false
+X-KDE-StartupNotify=false

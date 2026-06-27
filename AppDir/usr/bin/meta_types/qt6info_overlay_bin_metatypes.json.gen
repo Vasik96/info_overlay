@@ -2,45 +2,10 @@
     {
         "classes": [
             {
-                "className": "FileHandler",
-                "lineNumber": 4,
-                "methods": [
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "text",
-                                "type": "QString"
-                            }
-                        ],
-                        "index": 0,
-                        "lineNumber": 8,
-                        "name": "saveText",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "index": 1,
-                        "lineNumber": 9,
-                        "name": "loadText",
-                        "returnType": "QString"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "interactive",
-                                "type": "bool"
-                            }
-                        ],
-                        "index": 2,
-                        "lineNumber": 10,
-                        "name": "setKeyboardMode",
-                        "returnType": "void"
-                    }
-                ],
+                "className": "OverlayMaskHandler",
+                "lineNumber": 5,
                 "object": true,
-                "qualifiedClassName": "FileHandler",
+                "qualifiedClassName": "OverlayMaskHandler",
                 "superClasses": [
                     {
                         "access": "public",
@@ -49,54 +14,86 @@
                 ]
             }
         ],
-        "inputFile": "FileHandler.h",
+        "inputFile": "OverlayMaskHandler.h",
         "outputRevision": 69
     },
     {
         "classes": [
             {
-                "classInfos": [
-                    {
-                        "name": "D-Bus Interface",
-                        "value": "org.info_overlay.Overlay"
-                    }
-                ],
-                "className": "OverlayAdaptor",
-                "lineNumber": 8,
+                "className": "PortalShortcuts",
+                "lineNumber": 55,
                 "object": true,
-                "qualifiedClassName": "OverlayAdaptor",
+                "qualifiedClassName": "PortalShortcuts",
                 "slots": [
                     {
                         "access": "public",
+                        "arguments": [
+                            {
+                                "name": "responseCode",
+                                "type": "uint"
+                            },
+                            {
+                                "name": "results",
+                                "type": "QVariantMap"
+                            }
+                        ],
                         "index": 0,
-                        "lineNumber": 18,
-                        "name": "Toggle",
+                        "lineNumber": 62,
+                        "name": "handleSessionCreatedResponse",
                         "returnType": "void"
                     },
                     {
                         "access": "public",
+                        "arguments": [
+                            {
+                                "name": "responseCode",
+                                "type": "uint"
+                            },
+                            {
+                                "name": "results",
+                                "type": "QVariantMap"
+                            }
+                        ],
                         "index": 1,
-                        "lineNumber": 27,
-                        "name": "Show",
+                        "lineNumber": 63,
+                        "name": "handleBindShortcutsResponse",
                         "returnType": "void"
                     },
                     {
                         "access": "public",
+                        "arguments": [
+                            {
+                                "name": "targetSession",
+                                "type": "QDBusObjectPath"
+                            },
+                            {
+                                "name": "shortcutId",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "timestamp",
+                                "type": "qulonglong"
+                            },
+                            {
+                                "name": "options",
+                                "type": "QVariantMap"
+                            }
+                        ],
                         "index": 2,
-                        "lineNumber": 35,
-                        "name": "Hide",
+                        "lineNumber": 64,
+                        "name": "handleActivated",
                         "returnType": "void"
                     }
                 ],
                 "superClasses": [
                     {
                         "access": "public",
-                        "name": "QDBusAbstractAdaptor"
+                        "name": "QObject"
                     }
                 ]
             }
         ],
-        "inputFile": "OverlayAdaptor.h",
+        "inputFile": "PortalShortcuts.h",
         "outputRevision": 69
     }
 ]

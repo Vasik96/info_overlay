@@ -32,10 +32,10 @@ EnvironmentGroup=
 Executable=file:///home/vasik96/projects/info_overlay/build/src/info_overlay_bin
 External Terminal=konsole --hold -e
 Kill Before Executing Again=4194304
-Project Target=
+Project Target=info_overlay,info_overlay_bin
 Use External Terminal=false
 Working Directory=
-isExecutable=true
+isExecutable=false
 
 [Project]
 VersionControlSupport=
