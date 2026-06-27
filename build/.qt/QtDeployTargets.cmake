@@ -1,2 +1,0 @@
-set(__QT_DEPLOY_TARGET_info_overlay_bin_FILE /home/vasik96/projects/info_overlay/build/info_overlay_bin)
-set(__QT_DEPLOY_TARGET_info_overlay_bin_TYPE EXECUTABLE)

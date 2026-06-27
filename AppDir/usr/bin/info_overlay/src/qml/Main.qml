@@ -18,9 +18,8 @@ ApplicationWindow {
         id: overlayCard
         objectName: "overlayCard"
         clip: true
-        width: 200
-        height: 220
-        radius: 6
+        width: 180
+        height: 200
 
         color: Qt.rgba(0.13, 0.13, 0.13, 0.85)
         border.color: Qt.rgba(1, 1, 1, 0.15)
@@ -49,6 +48,13 @@ ApplicationWindow {
                 onClicked: {
                     Qt.quit()
                 }
+            }
+
+
+            Text {
+                text: "Toggle menu: " + portalShortcuts.shortcutLabel
+                color: "white"
+                font.pixelSize: 12
             }
 
 

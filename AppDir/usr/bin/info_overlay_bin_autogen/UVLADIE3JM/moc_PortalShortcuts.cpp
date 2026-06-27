@@ -39,35 +39,53 @@ template <> constexpr inline auto PortalShortcuts::qt_create_metaobjectdata<qt_m
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
         "PortalShortcuts",
-        "handleSessionCreatedResponse",
+        "shortcutLabelChanged",
         "",
-        "responseCode",
+        "handleSessionCreatedResponse",
+        "code",
         "QVariantMap",
         "results",
         "handleBindShortcutsResponse",
+        "handleListShortcutsResponse",
         "handleActivated",
         "QDBusObjectPath",
-        "targetSession",
-        "shortcutId",
+        "session",
+        "id",
         "timestamp",
-        "options"
+        "options",
+        "handleShortcutsChanged",
+        "ShortcutList",
+        "list",
+        "shortcutLabel"
     };
 
     QtMocHelpers::UintData qt_methods {
+        // Signal 'shortcutLabelChanged'
+        QtMocHelpers::SignalData<void()>(1, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'handleSessionCreatedResponse'
-        QtMocHelpers::SlotData<void(uint, const QVariantMap &)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::UInt, 3 }, { 0x80000000 | 4, 5 },
+        QtMocHelpers::SlotData<void(uint, const QVariantMap &)>(3, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::UInt, 4 }, { 0x80000000 | 5, 6 },
         }}),
         // Slot 'handleBindShortcutsResponse'
-        QtMocHelpers::SlotData<void(uint, const QVariantMap &)>(6, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::UInt, 3 }, { 0x80000000 | 4, 5 },
+        QtMocHelpers::SlotData<void(uint, const QVariantMap &)>(7, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::UInt, 4 }, { 0x80000000 | 5, 6 },
+        }}),
+        // Slot 'handleListShortcutsResponse'
+        QtMocHelpers::SlotData<void(uint, const QVariantMap &)>(8, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::UInt, 4 }, { 0x80000000 | 5, 6 },
         }}),
         // Slot 'handleActivated'
-        QtMocHelpers::SlotData<void(const QDBusObjectPath &, const QString &, qulonglong, const QVariantMap &)>(7, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 8, 9 }, { QMetaType::QString, 10 }, { QMetaType::ULongLong, 11 }, { 0x80000000 | 4, 12 },
+        QtMocHelpers::SlotData<void(const QDBusObjectPath &, const QString &, qulonglong, const QVariantMap &)>(9, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 10, 11 }, { QMetaType::QString, 12 }, { QMetaType::ULongLong, 13 }, { 0x80000000 | 5, 14 },
+        }}),
+        // Slot 'handleShortcutsChanged'
+        QtMocHelpers::SlotData<void(QDBusObjectPath, ShortcutList)>(15, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 10, 11 }, { 0x80000000 | 16, 17 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
+        // property 'shortcutLabel'
+        QtMocHelpers::PropertyData<QString>(18, QMetaType::QString, QMC::DefaultPropertyFlags, 0),
     };
     QtMocHelpers::UintData qt_enums {
     };
@@ -89,22 +107,45 @@ void PortalShortcuts::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
     auto *_t = static_cast<PortalShortcuts *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->handleSessionCreatedResponse((*reinterpret_cast<std::add_pointer_t<uint>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QVariantMap>>(_a[2]))); break;
-        case 1: _t->handleBindShortcutsResponse((*reinterpret_cast<std::add_pointer_t<uint>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QVariantMap>>(_a[2]))); break;
-        case 2: _t->handleActivated((*reinterpret_cast<std::add_pointer_t<QDBusObjectPath>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<qulonglong>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<QVariantMap>>(_a[4]))); break;
+        case 0: _t->shortcutLabelChanged(); break;
+        case 1: _t->handleSessionCreatedResponse((*reinterpret_cast<std::add_pointer_t<uint>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QVariantMap>>(_a[2]))); break;
+        case 2: _t->handleBindShortcutsResponse((*reinterpret_cast<std::add_pointer_t<uint>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QVariantMap>>(_a[2]))); break;
+        case 3: _t->handleListShortcutsResponse((*reinterpret_cast<std::add_pointer_t<uint>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QVariantMap>>(_a[2]))); break;
+        case 4: _t->handleActivated((*reinterpret_cast<std::add_pointer_t<QDBusObjectPath>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<qulonglong>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<QVariantMap>>(_a[4]))); break;
+        case 5: _t->handleShortcutsChanged((*reinterpret_cast<std::add_pointer_t<QDBusObjectPath>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<ShortcutList>>(_a[2]))); break;
         default: ;
         }
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
-        case 2:
+        case 4:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
             case 0:
                 *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QDBusObjectPath >(); break;
             }
             break;
+        case 5:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QDBusObjectPath >(); break;
+            case 1:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< ShortcutList >(); break;
+            }
+            break;
+        }
+    }
+    if (_c == QMetaObject::IndexOfMethod) {
+        if (QtMocHelpers::indexOfMethod<void (PortalShortcuts::*)()>(_a, &PortalShortcuts::shortcutLabelChanged, 0))
+            return;
+    }
+    if (_c == QMetaObject::ReadProperty) {
+        void *_v = _a[0];
+        switch (_id) {
+        case 0: *reinterpret_cast<QString*>(_v) = _t->shortcutLabel(); break;
+        default: break;
         }
     }
 }
@@ -128,15 +169,27 @@ int PortalShortcuts::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 6;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 6;
+    }
+    if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
+            || _c == QMetaObject::ResetProperty || _c == QMetaObject::BindableProperty
+            || _c == QMetaObject::RegisterPropertyMetaType) {
+        qt_static_metacall(this, _c, _id, _a);
+        _id -= 1;
     }
     return _id;
+}
+
+// SIGNAL 0
+void PortalShortcuts::shortcutLabelChanged()
+{
+    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
 QT_WARNING_POP

@@ -1,6 +1,0 @@
-module info_overlay
-typeinfo info_overlay_bin.qmltypes
-prefer :/info_overlay/
-Main 1.0 src/qml/Main.qml
-depends QtQuick
-

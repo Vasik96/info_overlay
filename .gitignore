@@ -1,0 +1,23 @@
+# Build directory
+/build/
+
+# CMake temporary files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+compile_commands.json
+*.ninja
+
+# Qt/QML generated files
+.qt/
+.rcc/
+.qmlls.build.ini
+*.qmlc
+
+# IDE/Editor settings
+.kdev4/
+*.kdev4
+
+# Ignore binary executables
+info_overlay_bin
+*.AppImage

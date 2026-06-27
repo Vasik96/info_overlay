@@ -2,32 +2,43 @@
     "classes": [
         {
             "className": "PortalShortcuts",
-            "lineNumber": 55,
+            "lineNumber": 38,
             "object": true,
+            "properties": [
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": false,
+                    "index": 0,
+                    "lineNumber": 41,
+                    "name": "shortcutLabel",
+                    "notify": "shortcutLabelChanged",
+                    "override": false,
+                    "read": "shortcutLabel",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "QString",
+                    "user": false,
+                    "virtual": false
+                }
+            ],
             "qualifiedClassName": "PortalShortcuts",
+            "signals": [
+                {
+                    "access": "public",
+                    "index": 0,
+                    "lineNumber": 49,
+                    "name": "shortcutLabelChanged",
+                    "returnType": "void"
+                }
+            ],
             "slots": [
                 {
-                    "access": "public",
+                    "access": "private",
                     "arguments": [
                         {
-                            "name": "responseCode",
-                            "type": "uint"
-                        },
-                        {
-                            "name": "results",
-                            "type": "QVariantMap"
-                        }
-                    ],
-                    "index": 0,
-                    "lineNumber": 62,
-                    "name": "handleSessionCreatedResponse",
-                    "returnType": "void"
-                },
-                {
-                    "access": "public",
-                    "arguments": [
-                        {
-                            "name": "responseCode",
+                            "name": "code",
                             "type": "uint"
                         },
                         {
@@ -36,19 +47,53 @@
                         }
                     ],
                     "index": 1,
-                    "lineNumber": 63,
+                    "lineNumber": 52,
+                    "name": "handleSessionCreatedResponse",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "arguments": [
+                        {
+                            "name": "code",
+                            "type": "uint"
+                        },
+                        {
+                            "name": "results",
+                            "type": "QVariantMap"
+                        }
+                    ],
+                    "index": 2,
+                    "lineNumber": 53,
                     "name": "handleBindShortcutsResponse",
                     "returnType": "void"
                 },
                 {
-                    "access": "public",
+                    "access": "private",
                     "arguments": [
                         {
-                            "name": "targetSession",
+                            "name": "code",
+                            "type": "uint"
+                        },
+                        {
+                            "name": "results",
+                            "type": "QVariantMap"
+                        }
+                    ],
+                    "index": 3,
+                    "lineNumber": 54,
+                    "name": "handleListShortcutsResponse",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "arguments": [
+                        {
+                            "name": "session",
                             "type": "QDBusObjectPath"
                         },
                         {
-                            "name": "shortcutId",
+                            "name": "id",
                             "type": "QString"
                         },
                         {
@@ -60,9 +105,26 @@
                             "type": "QVariantMap"
                         }
                     ],
-                    "index": 2,
-                    "lineNumber": 64,
+                    "index": 4,
+                    "lineNumber": 55,
                     "name": "handleActivated",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "arguments": [
+                        {
+                            "name": "session",
+                            "type": "QDBusObjectPath"
+                        },
+                        {
+                            "name": "list",
+                            "type": "ShortcutList"
+                        }
+                    ],
+                    "index": 5,
+                    "lineNumber": 57,
+                    "name": "handleShortcutsChanged",
                     "returnType": "void"
                 }
             ],

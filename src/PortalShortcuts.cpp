@@ -8,274 +8,269 @@
 #include <QDBusPendingCallWatcher>
 #include <QDBusPendingReply>
 #include <QDebug>
-// ---------------------------------------------------------------------------
-// Helper: produce a parent-window handle string for the portal BindShortcuts
-// call so KDE can associate the assignment dialog with the right window.
-//
-// Getting a real xdg-foreign wl_surface handle requires private QtWayland
-// headers (QWaylandWindow) that aren't guaranteed to be installed.  For a
-// layer-shell overlay the portal dialog appears regardless of this value, so
-// we pass an empty string which the spec explicitly allows.
-// ---------------------------------------------------------------------------
-static QString parentWindowHandle(QQuickWindow * /*window*/)
-{
-    return {};
-}
 
+static constexpr char kPortalService[]   = "org.freedesktop.portal.Desktop";
+static constexpr char kPortalPath[]      = "/org/freedesktop/portal/desktop";
+static constexpr char kPortalInterface[] = "org.freedesktop.portal.GlobalShortcuts";
+static constexpr char kRequestInterface[]= "org.freedesktop.portal.Request";
 
+// ---------------------------------------------------------------------------
 PortalShortcuts::PortalShortcuts(QQuickWindow *window, QObject *parent)
 : QObject(parent), m_window(window)
 {
-    // Register our custom D-Bus metatypes once at construction time.
+    qDebug() << "[PortalShortcuts] Constructor. window =" << window;
+
     qDBusRegisterMetaType<ShortcutEntry>();
     qDBusRegisterMetaType<ShortcutList>();
 
-    // Pre-compute the munged sender name used to predict request object paths.
     m_senderName = QDBusConnection::sessionBus().baseService();
     m_senderName.remove(':');
     m_senderName.replace('.', '_');
-
-    // WAIT for the window to actually be visible on screen before asking Wayland for a popup!
-    // This bypasses Wayland's strict anti-focus-stealing protections.
-    if (m_window->isVisible()) {
-        initPortalSession();
-    } else {
-        connect(m_window, &QQuickWindow::visibleChanged, this, [this]() {
-            if (m_window->isVisible()) {
-                // Disconnect immediately so this only runs once
-                disconnect(m_window, &QQuickWindow::visibleChanged, this, nullptr);
-                initPortalSession();
-            }
-        });
-    }
+    qDebug() << "[PortalShortcuts] D-Bus sender name (munged):" << m_senderName;
 }
 
 // ---------------------------------------------------------------------------
-// Builds the path the portal WILL use for a request, given our handle token.
-// Format: /org/freedesktop/portal/desktop/request/<sender>/<token>
-// We need this to subscribe BEFORE sending the call to avoid the race where
-// the portal responds before our watcher is connected.
+// Core helper: pre-subscribe to the portal Response signal for 'token', then
+// fire an async GlobalShortcuts method call.  All portal methods return (o)
+// synchronously; the real payload arrives via the Response signal later.
 // ---------------------------------------------------------------------------
-QString PortalShortcuts::buildRequestPath(const QString &token) const
+void PortalShortcuts::portalCall(const QString      &method,
+                                 const QString      &token,
+                                 const QList<QVariant> &args,
+                                 const char         *responseSlot)
 {
-    return QStringLiteral("/org/freedesktop/portal/desktop/request/%1/%2")
-    .arg(m_senderName, token);
-}
+    const QString reqPath = QStringLiteral(
+        "/org/freedesktop/portal/desktop/request/%1/%2").arg(m_senderName, token);
 
+        qDebug() << "[PortalShortcuts] portalCall:" << method
+        << "| token:" << token << "| reqPath:" << reqPath;
+
+        bool ok = QDBusConnection::sessionBus().connect(
+            kPortalService, reqPath, kRequestInterface, QStringLiteral("Response"),
+                                                        this, responseSlot);
+        if (!ok)
+            qWarning() << "[PortalShortcuts] Failed to pre-subscribe Response on" << reqPath;
+
+    QDBusMessage msg = QDBusMessage::createMethodCall(
+        kPortalService, kPortalPath, kPortalInterface, method);
+    for (const QVariant &arg : args)
+        msg << arg;
+
+    QDBusPendingCall call = QDBusConnection::sessionBus().asyncCall(msg);
+    auto *watcher = new QDBusPendingCallWatcher(call, this);
+    connect(watcher, &QDBusPendingCallWatcher::finished, this,
+            [method](QDBusPendingCallWatcher *w) {
+                w->deleteLater();
+                QDBusPendingReply<QDBusObjectPath> reply = *w;
+                if (reply.isError())
+                    qWarning() << "[PortalShortcuts]" << method << "call failed:"
+                    << reply.error().name() << reply.error().message();
+                else
+                    qDebug() << "[PortalShortcuts]" << method
+                    << "accepted, request path:" << reply.value().path();
+            });
+}
 
 // ---------------------------------------------------------------------------
 // Step 1 – Create a portal session.
-// We subscribe to the Response signal on the predicted request path BEFORE
-// making the async call so we never miss a fast portal response.
 // ---------------------------------------------------------------------------
 void PortalShortcuts::initPortalSession()
 {
+    qDebug() << "[PortalShortcuts] initPortalSession()";
+
     QDBusConnection bus = QDBusConnection::sessionBus();
     if (!bus.isConnected()) {
-        qWarning() << "Session D-Bus is not connected.";
+        qWarning() << "[PortalShortcuts] Session D-Bus not connected.";
         return;
     }
 
-    const QString sessionToken = QStringLiteral("info_overlay_session");
-    const QString requestToken = QStringLiteral("info_overlay_req");
+    // Subscribe to ShortcutsChanged so live reassignments update the label.
+    bool ok = bus.connect(kPortalService, kPortalPath, kPortalInterface,
+                          QStringLiteral("ShortcutsChanged"),
+                          this, SLOT(handleShortcutsChanged(QDBusObjectPath,ShortcutList)));
+    qDebug() << "[PortalShortcuts] ShortcutsChanged subscription:" << (ok ? "ok" : "FAILED");
 
-    QVariantMap options;
-    options[QStringLiteral("session_handle_token")] = sessionToken;
-    options[QStringLiteral("handle_token")]         = requestToken;
+    const QString token = QStringLiteral("info_overlay_req");
+    QVariantMap opts;
+    opts[QStringLiteral("session_handle_token")] = QStringLiteral("info_overlay_session");
+    opts[QStringLiteral("handle_token")]         = token;
 
-    // --- Subscribe BEFORE the call to avoid the response-race ---
-    const QString reqPath = buildRequestPath(requestToken);
-    qDebug() << "Pre-subscribing to session request path:" << reqPath;
-
-    bool ok = bus.connect(
-        QStringLiteral("org.freedesktop.portal.Desktop"),
-                          reqPath,
-                          QStringLiteral("org.freedesktop.portal.Request"),
-                          QStringLiteral("Response"),
-                          this, SLOT(handleSessionCreatedResponse(uint,QVariantMap))
-    );
-    if (!ok)
-        qWarning() << "Failed to connect to session Response signal on" << reqPath;
-
-    QDBusMessage msg = QDBusMessage::createMethodCall(
-        QStringLiteral("org.freedesktop.portal.Desktop"),
-                                                      QStringLiteral("/org/freedesktop/portal/desktop"),
-                                                      QStringLiteral("org.freedesktop.portal.GlobalShortcuts"),
-                                                      QStringLiteral("CreateSession")
-    );
-    msg << options;
-
-    QDBusPendingCall call = bus.asyncCall(msg);
-    QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(call, this);
-
-    connect(watcher, &QDBusPendingCallWatcher::finished, this,
-            [this](QDBusPendingCallWatcher *w) {
-                w->deleteLater();
-                QDBusPendingReply<QDBusObjectPath> reply = *w;
-                if (reply.isError()) {
-                    qWarning() << "CreateSession method call failed:"
-                    << reply.error().name()
-                    << reply.error().message();
-                } else {
-                    qDebug() << "CreateSession call accepted, request path:"
-                    << reply.value().path();
-                }
-            });
+    portalCall(QStringLiteral("CreateSession"), token,
+               { opts },
+               SLOT(handleSessionCreatedResponse(uint,QVariantMap)));
 }
 
-
 // ---------------------------------------------------------------------------
-// Step 2 – The portal confirmed the session handle.  Now bind our shortcuts.
+// Step 2 – Session ready → bind shortcuts.
 // ---------------------------------------------------------------------------
-void PortalShortcuts::handleSessionCreatedResponse(uint responseCode,
-                                                   const QVariantMap &results)
+void PortalShortcuts::handleSessionCreatedResponse(uint code, const QVariantMap &results)
 {
-    if (responseCode != 0) {
-        qWarning() << "Portal session creation denied/cancelled. Code:" << responseCode;
-        return;
-    }
-
-    if (!results.contains(QStringLiteral("session_handle"))) {
-        qWarning() << "Portal response missing session_handle key. Results:" << results;
-        return;
-    }
+    qDebug() << "[PortalShortcuts] handleSessionCreatedResponse code=" << code << results;
+    if (code != 0) { qWarning() << "[PortalShortcuts] Session creation failed. Code:" << code; return; }
 
     m_sessionPath = results.value(QStringLiteral("session_handle")).toString();
-    qDebug() << "Portal session created successfully:" << m_sessionPath;
-
+    if (m_sessionPath.isEmpty()) {
+        qWarning() << "[PortalShortcuts] session_handle missing in results:" << results;
+        return;
+    }
+    qDebug() << "[PortalShortcuts] Session handle:" << m_sessionPath;
     registerShortcuts(QDBusObjectPath(m_sessionPath));
 }
 
-
 // ---------------------------------------------------------------------------
-// Step 3 – Call BindShortcuts with a correctly-typed a(sa{sv}) argument and
-// a valid parent-window handle so KDE shows the assignment dialog.
-// Again we pre-subscribe to the Response signal before the async call.
+// Step 3 – Bind shortcuts (shows the KDE assignment dialog).
 // ---------------------------------------------------------------------------
 void PortalShortcuts::registerShortcuts(const QDBusObjectPath &sessionHandle)
 {
-    QDBusConnection bus = QDBusConnection::sessionBus();
+    qDebug() << "[PortalShortcuts] registerShortcuts() session:" << sessionHandle.path();
 
-    const QString bindRequestToken = QStringLiteral("info_overlay_bind_req");
-
-    // Build shortcut list with correct D-Bus-registered type
     ShortcutList shortcuts;
-    QVariantMap props;
-    props[QStringLiteral("description")]        = QStringLiteral("Toggle Info Overlay Visibility");
-    props[QStringLiteral("preferred_trigger")]  = QStringLiteral("Meta+F12");
-    shortcuts.append({ QStringLiteral("toggle_overlay"), props });
+    shortcuts.append({ QStringLiteral("toggle_overlay"), {
+        { QStringLiteral("description"),       QStringLiteral("Toggle Info Overlay Visibility") },
+                     { QStringLiteral("preferred_trigger"), QStringLiteral("Meta+F12") }
+    }});
 
-    // Window handle for KDE so it knows which window is requesting and can
-    // properly raise the dialog.  Empty string often causes silent suppression.
-    const QString parentHandle = parentWindowHandle(m_window);
-    if (parentHandle.isEmpty())
-        qDebug() << "No Wayland activation token available; dialog may not surface.";
-    else
-        qDebug() << "Using parent window handle:" << parentHandle;
+    const QString token = QStringLiteral("info_overlay_bind_req");
+    QVariantMap opts;
+    opts[QStringLiteral("handle_token")] = token;
 
-    QVariantMap bindOptions;
-    bindOptions[QStringLiteral("handle_token")] = bindRequestToken;
-
-    // --- Pre-subscribe before the call ---
-    const QString bindReqPath = buildRequestPath(bindRequestToken);
-    qDebug() << "Pre-subscribing to bind request path:" << bindReqPath;
-
-    bool ok = QDBusConnection::sessionBus().connect(
-        QStringLiteral("org.freedesktop.portal.Desktop"),
-                                                    bindReqPath,
-                                                    QStringLiteral("org.freedesktop.portal.Request"),
-                                                    QStringLiteral("Response"),
-                                                    this, SLOT(handleBindShortcutsResponse(uint,QVariantMap))
-    );
-    if (!ok)
-        qWarning() << "Failed to connect to bind Response signal on" << bindReqPath;
-
-    QDBusMessage bindCall = QDBusMessage::createMethodCall(
-        QStringLiteral("org.freedesktop.portal.Desktop"),
-                                                           QStringLiteral("/org/freedesktop/portal/desktop"),
-                                                           QStringLiteral("org.freedesktop.portal.GlobalShortcuts"),
-                                                           QStringLiteral("BindShortcuts")
-    );
-
-    // Argument order per spec:
-    //   session_handle (o), shortcuts (a(sa{sv})), parent_window (s), options (a{sv})
-    bindCall << QVariant::fromValue(sessionHandle)
-    << QVariant::fromValue(shortcuts)
-    << parentHandle
-    << bindOptions;
-
-    QDBusPendingCall pending = bus.asyncCall(bindCall);
-    QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(pending, this);
-
-    connect(watcher, &QDBusPendingCallWatcher::finished, this,
-            [](QDBusPendingCallWatcher *w) {
-                w->deleteLater();
-                QDBusPendingReply<QDBusObjectPath> reply = *w;
-                if (reply.isError()) {
-                    qWarning() << "BindShortcuts method call failed:"
-                    << reply.error().name()
-                    << reply.error().message();
-                } else {
-                    qDebug() << "BindShortcuts call accepted, request path:"
-                    << reply.value().path();
-                }
-            });
+    portalCall(QStringLiteral("BindShortcuts"), token,
+               { QVariant::fromValue(sessionHandle),
+                   QVariant::fromValue(shortcuts),
+               QString{},   // parent window handle (empty = portal decides placement)
+    opts },
+    SLOT(handleBindShortcutsResponse(uint,QVariantMap)));
 }
 
-
 // ---------------------------------------------------------------------------
-// Step 4 – User confirmed the shortcut assignment in the KDE dialog.
-// Now hook up the global Activated signal so we receive trigger events.
+// Step 4 – User confirmed binding → subscribe to Activated + fetch label.
 // ---------------------------------------------------------------------------
-void PortalShortcuts::handleBindShortcutsResponse(uint responseCode,
-                                                  const QVariantMap &results)
+void PortalShortcuts::handleBindShortcutsResponse(uint code, const QVariantMap &results)
 {
     Q_UNUSED(results)
+    qDebug() << "[PortalShortcuts] handleBindShortcutsResponse code=" << code;
+    if (code != 0) { qWarning() << "[PortalShortcuts] Shortcut binding rejected. Code:" << code; return; }
 
-    if (responseCode != 0) {
-        qWarning() << "User rejected or dismissed the shortcut binding dialog. Code:"
-        << responseCode;
-        return;
-    }
+    bool ok = QDBusConnection::sessionBus().connect(
+        kPortalService, kPortalPath, kPortalInterface, QStringLiteral("Activated"),
+                                                    this, SLOT(handleActivated(QDBusObjectPath,QString,qulonglong,QVariantMap)));
+    qDebug() << "[PortalShortcuts] Activated subscription:" << (ok ? "ok" : "FAILED");
 
-    qDebug() << "Shortcuts bound successfully. Subscribing to Activated signal.";
-
-    bool connected = QDBusConnection::sessionBus().connect(
-        QStringLiteral("org.freedesktop.portal.Desktop"),
-                                                           QStringLiteral("/org/freedesktop/portal/desktop"),
-                                                           QStringLiteral("org.freedesktop.portal.GlobalShortcuts"),
-                                                           QStringLiteral("Activated"),
-                                                           this,
-                                                           SLOT(handleActivated(QDBusObjectPath,QString,qulonglong,QVariantMap))
-    );
-
-    if (connected)
-        qDebug() << "Listening for global shortcut activations.";
-    else
-        qWarning() << "Failed to connect to Activated signal.";
+    listShortcuts();
 }
 
+// ---------------------------------------------------------------------------
+// Step 5 – Fetch the current shortcut list to populate the UI label.
+// ---------------------------------------------------------------------------
+void PortalShortcuts::listShortcuts()
+{
+    qDebug() << "[PortalShortcuts] listShortcuts() session:" << m_sessionPath;
+
+    const QString token = QStringLiteral("info_overlay_list_req");
+    QVariantMap opts;
+    opts[QStringLiteral("handle_token")] = token;
+
+    portalCall(QStringLiteral("ListShortcuts"), token,
+               { QVariant::fromValue(QDBusObjectPath(m_sessionPath)), opts },
+               SLOT(handleListShortcutsResponse(uint,QVariantMap)));
+}
 
 // ---------------------------------------------------------------------------
-// Fired by the compositor whenever our bound shortcut is triggered.
+// Step 5b – ListShortcuts Response → update the label.
 // ---------------------------------------------------------------------------
-void PortalShortcuts::handleActivated(const QDBusObjectPath &targetSession,
-                                      const QString &shortcutId,
+void PortalShortcuts::handleListShortcutsResponse(uint code, const QVariantMap &results)
+{
+    qDebug() << "[PortalShortcuts] handleListShortcutsResponse code=" << code;
+    if (code != 0) { qWarning() << "[PortalShortcuts] ListShortcuts denied. Code:" << code; return; }
+
+    if (!results.contains(QStringLiteral("shortcuts"))) {
+        qWarning() << "[PortalShortcuts] 'shortcuts' key missing in results:" << results;
+        return;
+    }
+    auto list = qdbus_cast<ShortcutList>(results.value(QStringLiteral("shortcuts")));
+    qDebug() << "[PortalShortcuts] ListShortcuts returned" << list.size() << "shortcut(s).";
+    updateShortcutLabel(list);
+}
+
+// ---------------------------------------------------------------------------
+// Fired by the compositor when the bound shortcut is pressed.
+// ---------------------------------------------------------------------------
+void PortalShortcuts::handleActivated(const QDBusObjectPath &session,
+                                      const QString &id,
                                       qulonglong timestamp,
                                       const QVariantMap &options)
 {
     Q_UNUSED(options)
+    qDebug() << "[PortalShortcuts] handleActivated id=" << id
+    << "session=" << session.path() << "ts=" << timestamp;
 
-    if (targetSession.path() != m_sessionPath)
-        return;
+    if (session.path() != m_sessionPath) return;
 
-    if (shortcutId == QStringLiteral("toggle_overlay")) {
-        QObject *card = m_window->findChild<QObject *>(QStringLiteral("overlayCard"));
-        if (card) {
-            bool visible = card->property("visible").toBool();
-            card->setProperty("visible", !visible);
-            OverlayMaskHandler::updateOverlayMask(m_window);
-            qDebug() << "Overlay toggled via global shortcut. Timestamp:" << timestamp;
+    if (id == QStringLiteral("toggle_overlay")) {
+        if (!m_window) { qWarning() << "[PortalShortcuts] m_window is null."; return; }
+        auto *card = m_window->findChild<QObject *>(QStringLiteral("overlayCard"));
+        if (!card) { qWarning() << "[PortalShortcuts] overlayCard not found."; return; }
+
+        bool nowVisible = !card->property("visible").toBool();
+        qDebug() << "[PortalShortcuts] Toggling overlayCard visible ->" << nowVisible;
+        card->setProperty("visible", nowVisible);
+        OverlayMaskHandler::updateOverlayMask(m_window);
+    } else {
+        qDebug() << "[PortalShortcuts] Unhandled shortcut id:" << id;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Live shortcut reassignment from the portal.
+// ---------------------------------------------------------------------------
+void PortalShortcuts::handleShortcutsChanged(QDBusObjectPath session, ShortcutList list)
+{
+    qDebug() << "[PortalShortcuts] handleShortcutsChanged session=" << session.path()
+    << "count=" << list.size();
+    if (session.path() == m_sessionPath)
+        updateShortcutLabel(list);
+}
+
+// ---------------------------------------------------------------------------
+// Extract the trigger_description for "toggle_overlay" and notify QML.
+// ---------------------------------------------------------------------------
+void PortalShortcuts::updateShortcutLabel(const ShortcutList &list)
+{
+    for (const auto &entry : list) {
+        if (entry.first != QStringLiteral("toggle_overlay")) continue;
+
+        QString trigger = entry.second.value(QStringLiteral("trigger_description")).toString();
+        qDebug() << "[PortalShortcuts] updateShortcutLabel: trigger_description =" << trigger;
+
+        if (trigger.isEmpty())
+            qWarning() << "[PortalShortcuts] trigger_description is empty (no key assigned yet).";
+
+        if (m_shortcutLabel != trigger) {
+            m_shortcutLabel = trigger;
+            emit shortcutLabelChanged();
         }
+        return;
+    }
+    qWarning() << "[PortalShortcuts] 'toggle_overlay' entry not found in shortcut list.";
+}
+
+// ---------------------------------------------------------------------------
+void PortalShortcuts::setWindow(QQuickWindow *window)
+{
+    qDebug() << "[PortalShortcuts] setWindow() old=" << m_window << "new=" << window;
+    if (m_window == window) return;
+    m_window = window;
+    if (!m_window) return;
+
+    if (m_window->isVisible()) {
+        initPortalSession();
+    } else {
+        connect(m_window, &QQuickWindow::visibleChanged, this, [this]() {
+            if (m_window && m_window->isVisible()) {
+                disconnect(m_window, &QQuickWindow::visibleChanged, this, nullptr);
+                qDebug() << "[PortalShortcuts] Window became visible, starting portal session.";
+                initPortalSession();
+            }
+        });
     }
 }

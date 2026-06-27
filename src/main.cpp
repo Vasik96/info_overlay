@@ -1,52 +1,56 @@
+#include <QDir>
+#include <QDebug>
+#include <QFileInfo>
+#include <QTextStream>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 #include <QQuickWindow>
 #include <QStandardPaths>
-#include <QFile>
-#include <QDir>
-#include <QTextStream>
-#include <QFileInfo>
-#include <QDebug>
 
 #include "OverlayMaskHandler.h"
 #include "PortalShortcuts.h"
 
-static void writeDesktopFile(const QString &filePath, const QString &execPath)
+// ---------------------------------------------------------------------------
+// Writes an XDG .desktop file so the portal can resolve our app ID.
+// ---------------------------------------------------------------------------
+static void writeDesktopFile(const QString &path, const QString &execPath)
 {
-    QFile f(filePath);
+    QFile f(path);
     if (!f.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        qWarning() << "Could not write desktop file to" << filePath;
+        qWarning() << "Could not write desktop file:" << path;
         return;
     }
-    QTextStream s(&f);
-    s << "[Desktop Entry]\n"
+    QTextStream(& f)
+    << "[Desktop Entry]\n"
     << "Type=Application\n"
     << "Name=Info Overlay\n"
-    << "Exec=" << execPath << "\n"
+    << "Exec="       << execPath << "\n"
     << "Icon=utilities-system-monitor\n"
     << "Categories=Utility;\n"
     << "NoDisplay=true\n"
     << "StartupNotify=false\n"
     << "X-KDE-StartupNotify=false\n";
-    qDebug() << "Wrote desktop file:" << filePath;
+
+    qDebug() << "Wrote desktop file:" << path;
 }
 
+// Installs the .desktop file in ~/.local/share/applications/ (where the
+// portal looks) and next to the executable (for AppImage portability).
 static void ensureDesktopFiles(const QString &execPath)
 {
+    const QString appsDir  = QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation);
+    const QString execDir  = QFileInfo(execPath).absolutePath();
     const QString fileName = QStringLiteral("info_overlay.desktop");
 
-    // 1. ~/.local/share/applications/ — where the portal looks for app IDs
-    const QString appsDir = QStandardPaths::writableLocation(
-        QStandardPaths::ApplicationsLocation);
     QDir().mkpath(appsDir);
-    writeDesktopFile(appsDir + QLatin1Char('/') + fileName, execPath);
+    writeDesktopFile(appsDir + '/' + fileName, execPath);
 
-    // 2. Same directory as the executable/AppImage — for portability
-    const QString execDir = QFileInfo(execPath).absolutePath();
     if (execDir != appsDir)
-        writeDesktopFile(execDir + QLatin1Char('/') + fileName, execPath);
+        writeDesktopFile(execDir + '/' + fileName, execPath);
 }
 
+// ---------------------------------------------------------------------------
 int main(int argc, char *argv[])
 {
     qputenv("QT_QPA_PLATFORM", "wayland");
@@ -56,25 +60,35 @@ int main(int argc, char *argv[])
     app.setOrganizationDomain(QStringLiteral("local.project"));
     app.setApplicationDisplayName(QStringLiteral("Info Overlay"));
 
-    // Resolve real executable path (handles AppImage via $APPIMAGE env var)
-    QString execPath = QString::fromLocal8Bit(qgetenv("APPIMAGE"));
-    if (execPath.isEmpty())
-        execPath = QFileInfo(QString::fromLocal8Bit(argv[0])).absoluteFilePath();
-
+    // Prefer $APPIMAGE so the .desktop Exec line points at the AppImage itself.
+    const QString execPath = [] {
+        QString p = QString::fromLocal8Bit(qgetenv("APPIMAGE"));
+        return p.isEmpty() ? QCoreApplication::applicationFilePath() : p;
+    }();
     ensureDesktopFiles(execPath);
     app.setDesktopFileName(QStringLiteral("info_overlay"));
 
+    // --- Load QML ---
     QQmlApplicationEngine engine;
+    auto *shortcuts = new PortalShortcuts(nullptr, &engine);
+    engine.rootContext()->setContextProperty("portalShortcuts", shortcuts);
     engine.loadFromModule("info_overlay", "Main");
-    if (engine.rootObjects().isEmpty())
-        return -1;
 
-    QQuickWindow *window = qobject_cast<QQuickWindow *>(engine.rootObjects().first());
-    if (window) {
-        new OverlayMaskHandler(window, window);
-        new PortalShortcuts(window, window);
-        window->show();
+    if (engine.rootObjects().isEmpty()) {
+        qCritical() << "Failed to load QML root object — exiting.";
+        return -1;
     }
+
+    // --- Wire up the window ---
+    auto *window = qobject_cast<QQuickWindow *>(engine.rootObjects().first());
+    if (!window) {
+        qCritical() << "Root QML object is not a QQuickWindow — exiting.";
+        return -1;
+    }
+
+    shortcuts->setWindow(window);
+    new OverlayMaskHandler(window, window);
+    window->show();
 
     return app.exec();
 }
