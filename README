@@ -1,3 +1,21 @@
+This is an example overlay for KDE plasma (or any other DE/WM that supports layer-shell)
+requirements:
+    - dont use GNOME
+    - wayland
+how to use:
+    - launch the appimage and then close the overlay
+    - a .desktop file will be generated
+    - launch the desktop file and you will be prompted for a shortcut permission
+    - set your shortcut and confirm
+    - use the overlay lol
+
+
+
+
+
+
+
+
 CMake Qt6 Quick Template
 ------------------------
 
