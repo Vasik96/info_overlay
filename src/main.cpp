@@ -7,9 +7,11 @@
 #include <QQmlContext>
 #include <QQuickWindow>
 #include <QStandardPaths>
+#include <QPalette>
 
 #include "OverlayMaskHandler.h"
 #include "PortalShortcuts.h"
+#include "AppLauncher.h"
 
 // ---------------------------------------------------------------------------
 // Writes an XDG .desktop file so the portal can resolve our app ID.
@@ -54,11 +56,14 @@ static void ensureDesktopFiles(const QString &execPath)
 int main(int argc, char *argv[])
 {
     qputenv("QT_QPA_PLATFORM", "wayland");
+    qputenv("QT_QUICK_CONTROLS_STYLE", "org.kde.desktop"); // force KDE theme
+
 
     QGuiApplication app(argc, argv);
     app.setApplicationName(QStringLiteral("info_overlay"));
     app.setOrganizationDomain(QStringLiteral("local.project"));
     app.setApplicationDisplayName(QStringLiteral("Info Overlay"));
+
 
     // Prefer $APPIMAGE so the .desktop Exec line points at the AppImage itself.
     const QString execPath = [] {
@@ -71,6 +76,9 @@ int main(int argc, char *argv[])
     // --- Load QML ---
     QQmlApplicationEngine engine;
     auto *shortcuts = new PortalShortcuts(nullptr, &engine);
+    AppLauncher launcher;
+
+    engine.rootContext()->setContextProperty("appLauncher", &launcher);
     engine.rootContext()->setContextProperty("portalShortcuts", shortcuts);
     engine.loadFromModule("info_overlay", "Main");
 

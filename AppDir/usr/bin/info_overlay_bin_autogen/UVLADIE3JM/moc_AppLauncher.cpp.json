@@ -1,0 +1,33 @@
+{
+    "classes": [
+        {
+            "className": "AppLauncher",
+            "lineNumber": 12,
+            "methods": [
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "appName",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 0,
+                    "lineNumber": 17,
+                    "name": "launchApp",
+                    "returnType": "void"
+                }
+            ],
+            "object": true,
+            "qualifiedClassName": "AppLauncher",
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "AppLauncher.h",
+    "outputRevision": 69
+}

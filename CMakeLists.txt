@@ -18,6 +18,7 @@ qt_add_executable(info_overlay_bin
     src/PortalShortcuts.cpp
     src/OverlayMaskHandler.h
     src/OverlayMaskHandler.cpp
+    src/AppLauncher.h
 )
 
 # Bundle QML assets into the binary

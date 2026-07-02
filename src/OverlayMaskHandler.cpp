@@ -20,9 +20,19 @@ OverlayMaskHandler::OverlayMaskHandler(QQuickWindow *window, QObject *parent)
         qDebug() << "[OverlayMaskHandler] LayerShellQt::Window obtained. Applying initial layer config.";
 
         auto enforceLayer = [layerWindow]() {
-            qDebug() << "[OverlayMaskHandler] enforceLayer() called — setting LayerOverlay + KeyboardInteractivityOnDemand.";
+            qDebug() << "[OverlayMaskHandler] enforceLayer() called — setting LayerOverlay + KeyboardInteractivityNone.";
             layerWindow->setLayer(LayerShellQt::Window::LayerOverlay);
-            layerWindow->setKeyboardInteractivity(LayerShellQt::Window::KeyboardInteractivityOnDemand);
+            layerWindow->setKeyboardInteractivity(LayerShellQt::Window::KeyboardInteractivityNone);
+
+            layerWindow->setExclusiveZone(-1); // Prevent compositor panels from shifting your center
+
+            // --- FIXED CASTING LINE HERE ---
+            layerWindow->setAnchors(LayerShellQt::Window::Anchors(
+                LayerShellQt::Window::AnchorTop |
+                LayerShellQt::Window::AnchorBottom |
+                LayerShellQt::Window::AnchorLeft |
+                LayerShellQt::Window::AnchorRight
+            ));
         };
 
         enforceLayer();
@@ -75,34 +85,36 @@ OverlayMaskHandler::OverlayMaskHandler(QQuickWindow *window, QObject *parent)
 
 void OverlayMaskHandler::updateOverlayMask(QQuickWindow *window)
 {
-    if (!window) {
-        qWarning() << "[OverlayMaskHandler] updateOverlayMask() called with null window, skipping.";
-        return;
-    }
+    if (!window) return;
 
     QObject *overlayCard = window->findChild<QObject*>("overlayCard");
 
-    if (!overlayCard) {
-        qWarning() << "[OverlayMaskHandler] updateOverlayMask(): overlayCard not found in window. "
-        "Applying minimal 1x1 mask.";
-        window->setMask(QRegion(-1, -1, 1, 1));
-        return;
+    // Create a base empty region
+    QRegion combinedRegion;
+
+    // 1. Add the Overlay Menu Card if it's visible
+    if (overlayCard && overlayCard->property("visible").toBool()) {
+        int x = overlayCard->property("x").toInt();
+        int y = overlayCard->property("y").toInt();
+        int w = overlayCard->property("width").toInt();
+        int h = overlayCard->property("height").toInt();
+        combinedRegion += QRegion(x, y, w, h);
     }
 
-    const bool visible = overlayCard->property("visible").toBool();
-    if (!visible) {
-        qDebug() << "[OverlayMaskHandler] overlayCard is hidden. Applying minimal 1x1 mask.";
-        window->setMask(QRegion(-1, -1, 1, 1));
-        return;
+    // 2. Add the Crosshair region so it doesn't get cut out or offset
+    // give your crosshair item an objectName: "crosshairItem" in QML!
+    QObject *crosshair = window->findChild<QObject*>("crosshairItem");
+    if (crosshair && crosshair->property("visible").toBool()) {
+        // Calculate the crosshair bounds based on true window center
+        int cx = (window->width() / 2) - 20;
+        int cy = (window->height() / 2) - 20;
+        combinedRegion += QRegion(cx, cy, 40, 40);
     }
 
-    const int x = overlayCard->property("x").toInt();
-    const int y = overlayCard->property("y").toInt();
-    const int w = overlayCard->property("width").toInt();
-    const int h = overlayCard->property("height").toInt();
-
-    qDebug() << "[OverlayMaskHandler] updateOverlayMask(): overlayCard visible at"
-    << x << y << w << "x" << h << "— applying mask.";
-
-    window->setMask(QRegion(x, y, w, h));
+    // If both are hidden, apply a minimal 1x1 fallback so the surface stays alive
+    if (combinedRegion.isEmpty()) {
+        window->setMask(QRegion(-1, -1, 1, 1));
+    } else {
+        window->setMask(combinedRegion);
+    }
 }

@@ -39,14 +39,18 @@ class PortalShortcuts : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString shortcutLabel READ shortcutLabel NOTIFY shortcutLabelChanged)
+    // Added displayMode property for fluid tracking without visual pops
+    Q_PROPERTY(int displayMode READ displayMode NOTIFY displayModeChanged)
 
 public:
     explicit PortalShortcuts(QQuickWindow *window, QObject *parent = nullptr);
     void    setWindow(QQuickWindow *window);
     QString shortcutLabel() const { return m_shortcutLabel; }
+    int     displayMode() const { return m_displayMode; }
 
 signals:
     void shortcutLabelChanged();
+    void displayModeChanged();
 
 private slots:
     void handleSessionCreatedResponse(uint code, const QVariantMap &results);
@@ -61,16 +65,14 @@ private:
     void registerShortcuts(const QDBusObjectPath &sessionHandle);
     void listShortcuts();
 
-    // Pre-subscribe to the portal Response signal for 'token', then dispatch
-    // 'method' with 'args' on the GlobalShortcuts interface.  Returns the
-    // pending call watcher so the caller can log the immediate (o) reply.
     void portalCall(const QString &method, const QString &token,
                     const QList<QVariant> &args, const char *responseSlot);
 
     void updateShortcutLabel(const ShortcutList &list);
 
-    QQuickWindow *m_window      = nullptr;
+    QQuickWindow *m_window        = nullptr;
     QString       m_sessionPath;
     QString       m_senderName;
     QString       m_shortcutLabel = QStringLiteral("unset");
+    int           m_displayMode   = 0; // 0 = Interactive, 1 = ViewOnly, 2 = Hidden
 };
