@@ -20,4 +20,4 @@ compile_commands.json
 
 # Ignore binary executables
 info_overlay_bin
-*.AppImage
+Info_Overlay-x86_64.AppImage
