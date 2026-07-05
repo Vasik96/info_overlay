@@ -73,6 +73,16 @@ OverlayMaskHandler::OverlayMaskHandler(QQuickWindow *window, QObject *parent)
         "Mask will not track the card's geometry dynamically.";
     }
 
+    QObject *topBar = m_window->findChild<QObject*>("topBarItem");
+    if (topBar) {
+        connect(topBar, SIGNAL(visibleChanged()), m_window, SLOT(update()));
+        qDebug() << "[OverlayMaskHandler] Connected visibility signals from topBar -> window update().";
+    }
+    else {
+        qWarning() << "[OverlayMaskHandler] no topbar exists";
+    }
+
+
     // 3. Keep updating mask across animation refresh cycles.
     connect(m_window, &QQuickWindow::afterAnimating, this, [this]() {
         updateOverlayMask(m_window);
@@ -88,8 +98,9 @@ void OverlayMaskHandler::updateOverlayMask(QQuickWindow *window)
     if (!window) return;
 
     QObject *overlayCard = window->findChild<QObject*>("overlayCard");
+    QObject *topBar = window->findChild<QObject*>("topBarItem");
+    QObject *crosshair = window->findChild<QObject*>("crosshairItem");
 
-    // Create a base empty region
     QRegion combinedRegion;
 
     // 1. Add the Overlay Menu Card if it's visible
@@ -101,17 +112,21 @@ void OverlayMaskHandler::updateOverlayMask(QQuickWindow *window)
         combinedRegion += QRegion(x, y, w, h);
     }
 
-    // 2. Add the Crosshair region so it doesn't get cut out or offset
-    // give your crosshair item an objectName: "crosshairItem" in QML!
-    QObject *crosshair = window->findChild<QObject*>("crosshairItem");
+    // 2. Add the Top Bar if it's visible (Takes up full width at top of screen)
+    if (topBar && topBar->property("visible").toBool()) {
+        int h = topBar->property("height").toInt();
+        if (h <= 0) h = 34; // Fallback to QML default height if not evaluated yet
+        combinedRegion += QRegion(0, 0, window->width(), h);
+    }
+
+    // 3. Add the Crosshair region
     if (crosshair && crosshair->property("visible").toBool()) {
-        // Calculate the crosshair bounds based on true window center
         int cx = (window->width() / 2) - 20;
         int cy = (window->height() / 2) - 20;
         combinedRegion += QRegion(cx, cy, 40, 40);
     }
 
-    // If both are hidden, apply a minimal 1x1 fallback so the surface stays alive
+    // Apply the combined layout mask to Wayland
     if (combinedRegion.isEmpty()) {
         window->setMask(QRegion(-1, -1, 1, 1));
     } else {

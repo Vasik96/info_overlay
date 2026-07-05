@@ -2,3 +2,4 @@
 #include "UVLADIE3JM/moc_AppLauncher.cpp"
 #include "UVLADIE3JM/moc_OverlayMaskHandler.cpp"
 #include "UVLADIE3JM/moc_PortalShortcuts.cpp"
+#include "UVLADIE3JM/moc_SystemGlobals.cpp"

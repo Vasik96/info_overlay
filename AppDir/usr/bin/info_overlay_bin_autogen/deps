@@ -9,6 +9,8 @@ info_overlay_bin_autogen/timestamp: \
 	/home/vasik96/projects/info_overlay/src/OverlayMaskHandler.h \
 	/home/vasik96/projects/info_overlay/src/PortalShortcuts.cpp \
 	/home/vasik96/projects/info_overlay/src/PortalShortcuts.h \
+	/home/vasik96/projects/info_overlay/src/SystemGlobals.cpp \
+	/home/vasik96/projects/info_overlay/src/SystemGlobals.h \
 	/home/vasik96/projects/info_overlay/src/main.cpp \
 	/usr/include/alloca.h \
 	/usr/include/asm-generic/bitsperlong.h \
@@ -298,6 +300,7 @@ info_overlay_bin_autogen/timestamp: \
 	/usr/include/qt6/QtCore/QSizeF \
 	/usr/include/qt6/QtCore/QStandardPaths \
 	/usr/include/qt6/QtCore/QString \
+	/usr/include/qt6/QtCore/QTimer \
 	/usr/include/qt6/QtCore/QVariant \
 	/usr/include/qt6/QtCore/QVariantMap \
 	/usr/include/qt6/QtCore/q17memory.h \
@@ -443,6 +446,7 @@ info_overlay_bin_autogen/timestamp: \
 	/usr/include/qt6/QtCore/qtenvironmentvariables.h \
 	/usr/include/qt6/QtCore/qtextstream.h \
 	/usr/include/qt6/QtCore/qtformat_impl.h \
+	/usr/include/qt6/QtCore/qtimer.h \
 	/usr/include/qt6/QtCore/qtimezone.h \
 	/usr/include/qt6/QtCore/qtmetamacros.h \
 	/usr/include/qt6/QtCore/qtnoop.h \
@@ -553,6 +557,10 @@ info_overlay_bin_autogen/timestamp: \
 	/usr/lib/gcc/x86_64-redhat-linux/16/include/stdarg.h \
 	/usr/lib/gcc/x86_64-redhat-linux/16/include/stdbool.h \
 	/usr/lib/gcc/x86_64-redhat-linux/16/include/stddef.h \
+	/usr/lib64/cmake/KF6WindowSystem/KF6WindowSystemConfig.cmake \
+	/usr/lib64/cmake/KF6WindowSystem/KF6WindowSystemConfigVersion.cmake \
+	/usr/lib64/cmake/KF6WindowSystem/KF6WindowSystemTargets-release.cmake \
+	/usr/lib64/cmake/KF6WindowSystem/KF6WindowSystemTargets.cmake \
 	/usr/lib64/cmake/LayerShellQt/LayerShellQtConfig.cmake \
 	/usr/lib64/cmake/LayerShellQt/LayerShellQtConfigVersion.cmake \
 	/usr/lib64/cmake/LayerShellQt/LayerShellQtTargets-release.cmake \
@@ -1389,6 +1397,25 @@ info_overlay_bin_autogen/timestamp: \
 	/usr/lib64/cmake/Qt6QuickTools/Qt6QuickToolsTargetsPrecheck.cmake \
 	/usr/lib64/cmake/Qt6QuickTools/Qt6QuickToolsVersionlessTargets.cmake \
 	/usr/lib64/cmake/Qt6QuickTools/Qt6SvgToQmlMacros.cmake \
+	/usr/lib64/cmake/Qt6ShaderTools/Qt6ShaderToolsAdditionalTargetInfo.cmake \
+	/usr/lib64/cmake/Qt6ShaderTools/Qt6ShaderToolsConfig.cmake \
+	/usr/lib64/cmake/Qt6ShaderTools/Qt6ShaderToolsConfigVersion.cmake \
+	/usr/lib64/cmake/Qt6ShaderTools/Qt6ShaderToolsConfigVersionImpl.cmake \
+	/usr/lib64/cmake/Qt6ShaderTools/Qt6ShaderToolsDependencies.cmake \
+	/usr/lib64/cmake/Qt6ShaderTools/Qt6ShaderToolsTargets-relwithdebinfo.cmake \
+	/usr/lib64/cmake/Qt6ShaderTools/Qt6ShaderToolsTargets.cmake \
+	/usr/lib64/cmake/Qt6ShaderTools/Qt6ShaderToolsTargetsPrecheck.cmake \
+	/usr/lib64/cmake/Qt6ShaderTools/Qt6ShaderToolsVersionlessAliasTargets.cmake \
+	/usr/lib64/cmake/Qt6ShaderToolsTools/Qt6ShaderToolsMacros.cmake \
+	/usr/lib64/cmake/Qt6ShaderToolsTools/Qt6ShaderToolsToolsAdditionalTargetInfo.cmake \
+	/usr/lib64/cmake/Qt6ShaderToolsTools/Qt6ShaderToolsToolsConfig.cmake \
+	/usr/lib64/cmake/Qt6ShaderToolsTools/Qt6ShaderToolsToolsConfigVersion.cmake \
+	/usr/lib64/cmake/Qt6ShaderToolsTools/Qt6ShaderToolsToolsConfigVersionImpl.cmake \
+	/usr/lib64/cmake/Qt6ShaderToolsTools/Qt6ShaderToolsToolsDependencies.cmake \
+	/usr/lib64/cmake/Qt6ShaderToolsTools/Qt6ShaderToolsToolsTargets-relwithdebinfo.cmake \
+	/usr/lib64/cmake/Qt6ShaderToolsTools/Qt6ShaderToolsToolsTargets.cmake \
+	/usr/lib64/cmake/Qt6ShaderToolsTools/Qt6ShaderToolsToolsTargetsPrecheck.cmake \
+	/usr/lib64/cmake/Qt6ShaderToolsTools/Qt6ShaderToolsToolsVersionlessTargets.cmake \
 	/usr/lib64/cmake/Qt6WaylandClient/Qt6WaylandClientAdditionalTargetInfo.cmake \
 	/usr/lib64/cmake/Qt6WaylandClient/Qt6WaylandClientConfig.cmake \
 	/usr/lib64/cmake/Qt6WaylandClient/Qt6WaylandClientConfigVersion.cmake \
@@ -1429,6 +1456,7 @@ info_overlay_bin_autogen/timestamp: \
 	/usr/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake \
 	/usr/share/cmake/Modules/CheckCXXCompilerFlag.cmake \
 	/usr/share/cmake/Modules/CheckCXXSourceCompiles.cmake \
+	/usr/share/cmake/Modules/CheckFunctionExists.cmake \
 	/usr/share/cmake/Modules/CheckIncludeFileCXX.cmake \
 	/usr/share/cmake/Modules/CheckLibraryExists.cmake \
 	/usr/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake \
@@ -1441,6 +1469,7 @@ info_overlay_bin_autogen/timestamp: \
 	/usr/share/cmake/Modules/FindPkgConfig.cmake \
 	/usr/share/cmake/Modules/FindThreads.cmake \
 	/usr/share/cmake/Modules/FindVulkan.cmake \
+	/usr/share/cmake/Modules/FindX11.cmake \
 	/usr/share/cmake/Modules/GNUInstallDirs.cmake \
 	/usr/share/cmake/Modules/Internal/CMakeCXXLinkerInformation.cmake \
 	/usr/share/cmake/Modules/Internal/CMakeCommonLinkerInformation.cmake \

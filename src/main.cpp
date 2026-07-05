@@ -8,10 +8,12 @@
 #include <QQuickWindow>
 #include <QStandardPaths>
 #include <QPalette>
+#include <QLoggingCategory>
 
 #include "OverlayMaskHandler.h"
 #include "PortalShortcuts.h"
 #include "AppLauncher.h"
+#include "SystemGlobals.h"
 
 // ---------------------------------------------------------------------------
 // Writes an XDG .desktop file so the portal can resolve our app ID.
@@ -55,6 +57,10 @@ static void ensureDesktopFiles(const QString &execPath)
 // ---------------------------------------------------------------------------
 int main(int argc, char *argv[])
 {
+    // force qdebug to work
+    QLoggingCategory::setFilterRules(QStringLiteral("*.debug=true\nqt.*=false\nkf.*=false"));
+
+
     qputenv("QT_QPA_PLATFORM", "wayland");
     qputenv("QT_QUICK_CONTROLS_STYLE", "org.kde.desktop"); // force KDE theme
 
@@ -77,9 +83,11 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     auto *shortcuts = new PortalShortcuts(nullptr, &engine);
     AppLauncher launcher;
+    SystemGlobals sysGlobals;
 
-    engine.rootContext()->setContextProperty("appLauncher", &launcher);
     engine.rootContext()->setContextProperty("portalShortcuts", shortcuts);
+    engine.rootContext()->setContextProperty("appLauncher", &launcher);
+    engine.rootContext()->setContextProperty("systemGlobals", &sysGlobals);
     engine.loadFromModule("info_overlay", "Main");
 
     if (engine.rootObjects().isEmpty()) {

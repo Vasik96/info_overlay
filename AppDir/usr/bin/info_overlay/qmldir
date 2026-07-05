@@ -2,5 +2,14 @@ module info_overlay
 typeinfo info_overlay_bin.qmltypes
 prefer :/info_overlay/
 Main 1.0 src/qml/Main.qml
+Crosshair 1.0 src/qml/components/Crosshair.qml
+Divider 1.0 src/qml/components/Divider.qml
+DividerVertical 1.0 src/qml/components/DividerVertical.qml
+InteractiveSection 1.0 src/qml/components/InteractiveSection.qml
+OverlayCard 1.0 src/qml/components/OverlayCard.qml
+RainOverlay 1.0 src/qml/components/RainOverlay.qml
+StatsTimer 1.0 src/qml/components/StatsTimer.qml
+ViewOnlySection 1.0 src/qml/components/ViewOnlySection.qml
+TopBar 1.0 src/qml/components/TopBar.qml
 depends QtQuick
 

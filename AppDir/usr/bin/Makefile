@@ -432,6 +432,30 @@ build/.qt/rcc/qrc_info_overlay_bin_raw_qml_0.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.qt/rcc/qrc_info_overlay_bin_raw_qml_0.cpp.s
 .PHONY : build/.qt/rcc/qrc_info_overlay_bin_raw_qml_0.cpp.s
 
+build/.qt/rcc/qrc_info_overlay_shaders.o: build/.qt/rcc/qrc_info_overlay_shaders.cpp.o
+.PHONY : build/.qt/rcc/qrc_info_overlay_shaders.o
+
+# target to build an object file
+build/.qt/rcc/qrc_info_overlay_shaders.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.qt/rcc/qrc_info_overlay_shaders.cpp.o
+.PHONY : build/.qt/rcc/qrc_info_overlay_shaders.cpp.o
+
+build/.qt/rcc/qrc_info_overlay_shaders.i: build/.qt/rcc/qrc_info_overlay_shaders.cpp.i
+.PHONY : build/.qt/rcc/qrc_info_overlay_shaders.i
+
+# target to preprocess a source file
+build/.qt/rcc/qrc_info_overlay_shaders.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.qt/rcc/qrc_info_overlay_shaders.cpp.i
+.PHONY : build/.qt/rcc/qrc_info_overlay_shaders.cpp.i
+
+build/.qt/rcc/qrc_info_overlay_shaders.s: build/.qt/rcc/qrc_info_overlay_shaders.cpp.s
+.PHONY : build/.qt/rcc/qrc_info_overlay_shaders.s
+
+# target to generate assembly for a file
+build/.qt/rcc/qrc_info_overlay_shaders.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.qt/rcc/qrc_info_overlay_shaders.cpp.s
+.PHONY : build/.qt/rcc/qrc_info_overlay_shaders.cpp.s
+
 build/.qt/rcc/qrc_qmake_info_overlay.o: build/.qt/rcc/qrc_qmake_info_overlay.cpp.o
 .PHONY : build/.qt/rcc/qrc_qmake_info_overlay.o
 
@@ -503,6 +527,222 @@ build/.rcc/qmlcache/info_overlay_bin_src/qml/Main_qml.s: build/.rcc/qmlcache/inf
 build/.rcc/qmlcache/info_overlay_bin_src/qml/Main_qml.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/Main_qml.cpp.s
 .PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/Main_qml.cpp.s
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Crosshair_qml.o: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Crosshair_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Crosshair_qml.o
+
+# target to build an object file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Crosshair_qml.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Crosshair_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Crosshair_qml.cpp.o
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Crosshair_qml.i: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Crosshair_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Crosshair_qml.i
+
+# target to preprocess a source file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Crosshair_qml.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Crosshair_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Crosshair_qml.cpp.i
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Crosshair_qml.s: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Crosshair_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Crosshair_qml.s
+
+# target to generate assembly for a file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Crosshair_qml.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Crosshair_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Crosshair_qml.cpp.s
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/DividerVertical_qml.o: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/DividerVertical_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/DividerVertical_qml.o
+
+# target to build an object file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/DividerVertical_qml.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/DividerVertical_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/DividerVertical_qml.cpp.o
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/DividerVertical_qml.i: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/DividerVertical_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/DividerVertical_qml.i
+
+# target to preprocess a source file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/DividerVertical_qml.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/DividerVertical_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/DividerVertical_qml.cpp.i
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/DividerVertical_qml.s: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/DividerVertical_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/DividerVertical_qml.s
+
+# target to generate assembly for a file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/DividerVertical_qml.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/DividerVertical_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/DividerVertical_qml.cpp.s
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Divider_qml.o: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Divider_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Divider_qml.o
+
+# target to build an object file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Divider_qml.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Divider_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Divider_qml.cpp.o
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Divider_qml.i: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Divider_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Divider_qml.i
+
+# target to preprocess a source file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Divider_qml.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Divider_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Divider_qml.cpp.i
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Divider_qml.s: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Divider_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Divider_qml.s
+
+# target to generate assembly for a file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Divider_qml.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Divider_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Divider_qml.cpp.s
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/InteractiveSection_qml.o: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/InteractiveSection_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/InteractiveSection_qml.o
+
+# target to build an object file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/InteractiveSection_qml.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/InteractiveSection_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/InteractiveSection_qml.cpp.o
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/InteractiveSection_qml.i: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/InteractiveSection_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/InteractiveSection_qml.i
+
+# target to preprocess a source file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/InteractiveSection_qml.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/InteractiveSection_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/InteractiveSection_qml.cpp.i
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/InteractiveSection_qml.s: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/InteractiveSection_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/InteractiveSection_qml.s
+
+# target to generate assembly for a file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/InteractiveSection_qml.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/InteractiveSection_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/InteractiveSection_qml.cpp.s
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/OverlayCard_qml.o: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/OverlayCard_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/OverlayCard_qml.o
+
+# target to build an object file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/OverlayCard_qml.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/OverlayCard_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/OverlayCard_qml.cpp.o
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/OverlayCard_qml.i: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/OverlayCard_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/OverlayCard_qml.i
+
+# target to preprocess a source file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/OverlayCard_qml.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/OverlayCard_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/OverlayCard_qml.cpp.i
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/OverlayCard_qml.s: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/OverlayCard_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/OverlayCard_qml.s
+
+# target to generate assembly for a file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/OverlayCard_qml.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/OverlayCard_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/OverlayCard_qml.cpp.s
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/RainOverlay_qml.o: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/RainOverlay_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/RainOverlay_qml.o
+
+# target to build an object file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/RainOverlay_qml.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/RainOverlay_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/RainOverlay_qml.cpp.o
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/RainOverlay_qml.i: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/RainOverlay_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/RainOverlay_qml.i
+
+# target to preprocess a source file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/RainOverlay_qml.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/RainOverlay_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/RainOverlay_qml.cpp.i
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/RainOverlay_qml.s: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/RainOverlay_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/RainOverlay_qml.s
+
+# target to generate assembly for a file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/RainOverlay_qml.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/RainOverlay_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/RainOverlay_qml.cpp.s
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/StatsTimer_qml.o: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/StatsTimer_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/StatsTimer_qml.o
+
+# target to build an object file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/StatsTimer_qml.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/StatsTimer_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/StatsTimer_qml.cpp.o
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/StatsTimer_qml.i: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/StatsTimer_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/StatsTimer_qml.i
+
+# target to preprocess a source file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/StatsTimer_qml.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/StatsTimer_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/StatsTimer_qml.cpp.i
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/StatsTimer_qml.s: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/StatsTimer_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/StatsTimer_qml.s
+
+# target to generate assembly for a file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/StatsTimer_qml.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/StatsTimer_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/StatsTimer_qml.cpp.s
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/TopBar_qml.o: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/TopBar_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/TopBar_qml.o
+
+# target to build an object file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/TopBar_qml.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/TopBar_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/TopBar_qml.cpp.o
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/TopBar_qml.i: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/TopBar_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/TopBar_qml.i
+
+# target to preprocess a source file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/TopBar_qml.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/TopBar_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/TopBar_qml.cpp.i
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/TopBar_qml.s: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/TopBar_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/TopBar_qml.s
+
+# target to generate assembly for a file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/TopBar_qml.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/TopBar_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/TopBar_qml.cpp.s
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/ViewOnlySection_qml.o: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/ViewOnlySection_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/ViewOnlySection_qml.o
+
+# target to build an object file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/ViewOnlySection_qml.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/ViewOnlySection_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/ViewOnlySection_qml.cpp.o
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/ViewOnlySection_qml.i: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/ViewOnlySection_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/ViewOnlySection_qml.i
+
+# target to preprocess a source file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/ViewOnlySection_qml.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/ViewOnlySection_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/ViewOnlySection_qml.cpp.i
+
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/ViewOnlySection_qml.s: build/.rcc/qmlcache/info_overlay_bin_src/qml/components/ViewOnlySection_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/ViewOnlySection_qml.s
+
+# target to generate assembly for a file
+build/.rcc/qmlcache/info_overlay_bin_src/qml/components/ViewOnlySection_qml.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/build/.rcc/qmlcache/info_overlay_bin_src/qml/components/ViewOnlySection_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/info_overlay_bin_src/qml/components/ViewOnlySection_qml.cpp.s
 
 info_overlay_bin_autogen/mocs_compilation.o: info_overlay_bin_autogen/mocs_compilation.cpp.o
 .PHONY : info_overlay_bin_autogen/mocs_compilation.o
@@ -600,6 +840,30 @@ src/PortalShortcuts.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/src/PortalShortcuts.cpp.s
 .PHONY : src/PortalShortcuts.cpp.s
 
+src/SystemGlobals.o: src/SystemGlobals.cpp.o
+.PHONY : src/SystemGlobals.o
+
+# target to build an object file
+src/SystemGlobals.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/src/SystemGlobals.cpp.o
+.PHONY : src/SystemGlobals.cpp.o
+
+src/SystemGlobals.i: src/SystemGlobals.cpp.i
+.PHONY : src/SystemGlobals.i
+
+# target to preprocess a source file
+src/SystemGlobals.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/src/SystemGlobals.cpp.i
+.PHONY : src/SystemGlobals.cpp.i
+
+src/SystemGlobals.s: src/SystemGlobals.cpp.s
+.PHONY : src/SystemGlobals.s
+
+# target to generate assembly for a file
+src/SystemGlobals.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/info_overlay_bin.dir/build.make CMakeFiles/info_overlay_bin.dir/src/SystemGlobals.cpp.s
+.PHONY : src/SystemGlobals.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -658,6 +922,9 @@ help:
 	@echo "... build/.qt/rcc/qrc_info_overlay_bin_raw_qml_0.o"
 	@echo "... build/.qt/rcc/qrc_info_overlay_bin_raw_qml_0.i"
 	@echo "... build/.qt/rcc/qrc_info_overlay_bin_raw_qml_0.s"
+	@echo "... build/.qt/rcc/qrc_info_overlay_shaders.o"
+	@echo "... build/.qt/rcc/qrc_info_overlay_shaders.i"
+	@echo "... build/.qt/rcc/qrc_info_overlay_shaders.s"
 	@echo "... build/.qt/rcc/qrc_qmake_info_overlay.o"
 	@echo "... build/.qt/rcc/qrc_qmake_info_overlay.i"
 	@echo "... build/.qt/rcc/qrc_qmake_info_overlay.s"
@@ -667,6 +934,33 @@ help:
 	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/Main_qml.o"
 	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/Main_qml.i"
 	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/Main_qml.s"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Crosshair_qml.o"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Crosshair_qml.i"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Crosshair_qml.s"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/DividerVertical_qml.o"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/DividerVertical_qml.i"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/DividerVertical_qml.s"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Divider_qml.o"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Divider_qml.i"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/Divider_qml.s"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/InteractiveSection_qml.o"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/InteractiveSection_qml.i"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/InteractiveSection_qml.s"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/OverlayCard_qml.o"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/OverlayCard_qml.i"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/OverlayCard_qml.s"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/RainOverlay_qml.o"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/RainOverlay_qml.i"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/RainOverlay_qml.s"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/StatsTimer_qml.o"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/StatsTimer_qml.i"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/StatsTimer_qml.s"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/TopBar_qml.o"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/TopBar_qml.i"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/TopBar_qml.s"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/ViewOnlySection_qml.o"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/ViewOnlySection_qml.i"
+	@echo "... build/.rcc/qmlcache/info_overlay_bin_src/qml/components/ViewOnlySection_qml.s"
 	@echo "... info_overlay_bin_autogen/mocs_compilation.o"
 	@echo "... info_overlay_bin_autogen/mocs_compilation.i"
 	@echo "... info_overlay_bin_autogen/mocs_compilation.s"
@@ -679,6 +973,9 @@ help:
 	@echo "... src/PortalShortcuts.o"
 	@echo "... src/PortalShortcuts.i"
 	@echo "... src/PortalShortcuts.s"
+	@echo "... src/SystemGlobals.o"
+	@echo "... src/SystemGlobals.i"
+	@echo "... src/SystemGlobals.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

@@ -1,3 +1,4 @@
 /home/vasik96/projects/info_overlay/build/info_overlay_bin_autogen/include/../UVLADIE3JM/moc_AppLauncher.cpp.json
 /home/vasik96/projects/info_overlay/build/info_overlay_bin_autogen/include/../UVLADIE3JM/moc_OverlayMaskHandler.cpp.json
 /home/vasik96/projects/info_overlay/build/info_overlay_bin_autogen/include/../UVLADIE3JM/moc_PortalShortcuts.cpp.json
+/home/vasik96/projects/info_overlay/build/info_overlay_bin_autogen/include/../UVLADIE3JM/moc_SystemGlobals.cpp.json

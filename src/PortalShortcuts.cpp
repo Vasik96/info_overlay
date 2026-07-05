@@ -152,10 +152,12 @@ void PortalShortcuts::handleActivated(const QDBusObjectPath &session,
     // Apply strict visibility to elements before composition maps update
     if (m_displayMode == 0) {
         card->setProperty("visible", true);       // Interactive: Show panel
+        m_window->setFlags(m_window->flags() & ~Qt::WindowTransparentForInput); // remove WindowTransparentForInput so input is not passed through
     } else if (m_displayMode == 1) {
-        card->setProperty("visible", true);       // ViewOnly: Keep open (QML bindings shrink content)
+        m_window->setFlags(m_window->flags() | Qt::WindowTransparentForInput);
     } else if (m_displayMode == 2) {
         card->setProperty("visible", false);      // Hidden: Drop visibility cleanly
+        m_window->setFlags(m_window->flags() | Qt::WindowTransparentForInput);
     }
 
     // Refresh Wayland interaction masks instantly without layout frame stall
