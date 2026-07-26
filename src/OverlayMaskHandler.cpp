@@ -24,7 +24,7 @@ OverlayMaskHandler::OverlayMaskHandler(QQuickWindow *window, QObject *parent)
             layerWindow->setLayer(LayerShellQt::Window::LayerOverlay);
             layerWindow->setKeyboardInteractivity(LayerShellQt::Window::KeyboardInteractivityNone);
 
-            layerWindow->setExclusiveZone(-1); // Prevent compositor panels from shifting your center
+            layerWindow->setExclusiveZone(-1); // prevent compositor panels from shifting your center
 
             // --- FIXED CASTING LINE HERE ---
             layerWindow->setAnchors(LayerShellQt::Window::Anchors(

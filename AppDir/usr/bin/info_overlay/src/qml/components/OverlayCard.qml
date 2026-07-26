@@ -6,7 +6,7 @@ Rectangle {
     objectName: "overlayCard"
     clip: true
 
-    width: 200
+    width: 190
     height: mainLayout.implicitHeight + 32
 
     color: Qt.rgba(0.125, 0.137, 0.149, 0.9)
